@@ -41,3 +41,23 @@ if (event.data == YT.PlayerState.PLAYING && !done) {
 function stopVideo() {
 player.stopVideo();
 }
+
+//Create main cicle for the parameter reader
+$(document).ready(function(){
+  var heap = new Heap();
+  var serviceURL = "http://localhost:3000/getTimer";
+
+  setInterval(function() {
+    
+    var queryTime = Date.now().toString();
+    $.ajax({
+      url: serviceURL,
+    }).done(function(data){
+      console.log('R time:' + queryTime, 'S time:' + data);
+    }).fail(function(err){
+      console.log('Error:'+err);
+    });
+
+  }, 1000);
+
+});
