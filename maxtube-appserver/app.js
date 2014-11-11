@@ -5,8 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// module to enable cross domain
+var cors = require('cors')
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var timer = require('./routes/timer');
+var action = require('./routes/action');
 
 var app = express();
 
@@ -20,10 +25,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Add the cors module to express
+app.use(cors());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/getTimer', timer);
+app.use('/actions', action);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
