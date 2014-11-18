@@ -11,6 +11,13 @@
     <div id="playerContainer">
     	<div id="player"></div>
     </div>
+    <!-- Player Web Dashboard-->
+    <div id="dashBoardContainer">
     
+    </div>
+    <!-- Login-->
+    <div id="loginContainer">
+    
+    </div>
   </body>
 </html>
