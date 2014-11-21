@@ -4,6 +4,7 @@
     <title><%= pkg.name %></title>
 
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <script type="text/javascript" src="<%= js %>"></script>
@@ -14,6 +15,22 @@
     <!-- Player Web Dashboard-->
     <div id="dashBoardContainer">
         <button id="startPlayerButton">Start Player</button>
+        <div id="playlistContent">
+          
+          <label for="videoURL">Add Video URL</label>
+          <input type="text" id="videoURL">
+          <button id="addVideo">Add</button>
+
+          <h3>Playlist</h3>
+          <ul id="dashboardPlaylist">
+            
+          </ul>
+
+
+        </div>
+        <div id="playerContent">
+          
+        </div>
     </div>
     <!-- Login-->
     <div id="loginContainer">

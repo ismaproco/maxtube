@@ -74,6 +74,8 @@ $(document).ready(function(){
   }, 1000);
   */
 
+  dashboardInit();
+
 });
     
 var startPlayer = function()
@@ -81,7 +83,28 @@ var startPlayer = function()
     // hides the playercontainer
     
     player.playVideo();
-    
 }
 
+var currentPlaylist = [];
 
+function dashboardInit()
+{
+  $('#addVideo').on('click',function(evt){
+    currentPlaylist.push( $('#videoURL').val() );
+    drawPlaylist( currentPlaylist );
+    
+    $('#videoURL').val('');
+    $('#videoURL').focus();
+
+  });
+}
+
+function drawPlaylist(playlist)
+{
+  $('#dashboardPlaylist').empty();
+  for (var i = playlist.length - 1; i >= 0; i--) {
+    $li = $('<li>'+playlist[i]+'</li>');
+    $('#dashboardPlaylist').append($li);
+  };
+  
+}
