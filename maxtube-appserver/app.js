@@ -12,6 +12,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var timer = require('./routes/timer');
 var action = require('./routes/action');
+var playlist = require('./routes/playlist');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/getTimer', timer);
 app.use('/actions', action);
+app.use('/playlist', playlist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
