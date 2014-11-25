@@ -89,22 +89,49 @@ var currentPlaylist = [];
 
 function dashboardInit()
 {
+  currentPlaylist = getPlaylist();
+  drawPlaylist( currentPlaylist );
+  
   $('#addVideo').on('click',function(evt){
-    currentPlaylist.push( $('#videoURL').val() );
-    drawPlaylist( currentPlaylist );
-    
+  
+    saveUrl( $('#videoURL').val() );
+
     $('#videoURL').val('');
     $('#videoURL').focus();
-
   });
 }
 
 function drawPlaylist(playlist)
 {
   $('#dashboardPlaylist').empty();
+  playlist = playlist || [];
+  
   for (var i = playlist.length - 1; i >= 0; i--) {
-    $li = $('<li>'+playlist[i]+'</li>');
+    $li = $('<li>'+playlist[i].url+'</li>');
     $('#dashboardPlaylist').append($li);
   };
   
 }
+
+function saveUrl( url )
+{
+  $.ajax({
+    url: "http://localhost:3000/playlist",
+    dataType:"json",
+    data:{"operation": "add","url":url}
+  }).done(function( data ) {
+    drawPlaylist(data);
+  });
+}
+
+function getPlaylist( url )
+{
+  $.ajax({
+    url: "http://localhost:3000/playlist",
+    dataType:"json",
+    data:{"operation": "get"}
+  }).done(function( data ) {
+    drawPlaylist(data);
+  });
+}
+
