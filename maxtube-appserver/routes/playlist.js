@@ -29,7 +29,22 @@ router.get('/', function(req, res) {
             };  
         }
         
-        res.json( playlist );
+        res.json( playlist[pos] );
+    }
+    else if (req.query.operation === "update") {
+        if( req.query.pos )
+        {
+            pos = parseInt( req.query.pos );
+
+            if ( req.query.url ) {
+                playlist[pos] = req.query.url;
+            };
+        }
+        res.json( playlist[pos] );
+    }
+    else if (req.query.operation === "delete") {
+        playlist.splice(pos,1);
+        res.json( playlist[pos] );
     }
     else if (req.query.operation === "get") {
         if( req.query.pos )
